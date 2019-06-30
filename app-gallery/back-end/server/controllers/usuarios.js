@@ -1,5 +1,5 @@
 const usuarios = require('../models').usuarios;
-
+const jwt = require('../services/jwt');
 function crearUsuario(req,res){
     usuarios.create(req.body)
     .then(usuario => {
@@ -19,16 +19,23 @@ function login(req,res){
     })
     .then(usuario => {
         if (usuario){
-            res.status(200).send({usuario});
+            if (req.body.token == 'true'){
+                res.status(200).send({
+                    token: jwt.createToken(usuario)
+                });
+            }
+            else{
+                res.status(200).send({
+                    usuario: usuario
+                });
+            }
         }
         else{
-            res.status(200).send({message:'Usuario no encontrado..!'});
+            res.status(401).send({message:'Usuario no encontrado..!'});
         }
-        
-        
     })
     .catch(err=>{
-        res.status(500).send({message:'Ocurrió un error al buscar el suaurio'});
+        res.status(500).send({message:'Ocurrió un error al buscar el usuario'});
     })
 }
 module.exports={
