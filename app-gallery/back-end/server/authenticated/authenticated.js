@@ -13,7 +13,7 @@ function auth(req, res, next){
         if (err){
             return res.status(401).send({message: 'Acceso no autorizado..!'});
         }else{
-            next();
+            next();//para que prosiga la ejecución
         }
     });
 }
