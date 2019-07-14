@@ -18,6 +18,8 @@ app.use(function(req, res, next) {
 
   //rutas
   require('./server/routes/usuarios')(app);
+  require('./server/routes/fotografias')(app);
+
   app.get('*', (req,res)=>{
         res.status(200).send({message:"Hola chicos Node.js"});
   })
