@@ -31,7 +31,22 @@ function updateFotografia(req, res){
     });
 }
 
+function uploadFotografia(req, res){
+    var id = req.params.id;
+
+    if (req.files){
+        var file_path = req.files.foto.path;
+        var file_split = file_path.split('\\');
+        var file_name = file_split[3];
+        var ext_split = file_name.split('\.');
+        console.log(ext_split);
+    }else{
+        res.status(400).send({message:'Debe seleccionar una fotografía'});
+    }
+}
+
 module.exports = {
     createFotografia,
-    updateFotografia
+    updateFotografia,
+    uploadFotografia
 }
