@@ -50,22 +50,33 @@ function uploadFotografia(req, res){
             var foto = {};
             foto.imagen = file_name;
             fotografias.findByPk(id)
+            .then(foto2 =>{
+                //Cuando voy a actualizar una foto, primero la borro al igual q a la thumbnail
+                fs.exists(path.resolve(newPath + foto2.imagen), (exists) =>{
+                    if (exists){
+                        //console.log(newPath + foto2.imagen);
+                        fs.unlink(newPath + foto2.imagen, err => {
+                            if (err){
+                            }
+                        });
+                    }
+                });
+                fs.exists(path.resolve(thumbPath + foto2.imagen), (exists) =>{
+                    if (exists){
+                        //console.log(thumbPath + foto2.imagen);
+                        fs.unlink(thumbPath + foto2.imagen, err => {
+                            if (err){
+                            }
+                        });
+                    }
+                });
+            });
+
+            fotografias.findByPk(id)
             .then(foto1 =>{
-                fs.unlink(newPath + foto1.imagen, err => {
-                    if (err){
-                        res.status(500).send({message:'Ocurrió un error al eliminar la anterior foto'});            
-                    }
-                });
-                fs.unlink(thumbPath + foto1.imagen, err => {
-                    if (err){
-                        res.status(500).send({message:'Ocurrió un error al eliminar la anterior thumbnail'});            
-                    }
-                });
                 foto1.update(foto)
                 .then(()=>{
                     newPath = './server/uploads/fotografias/' + file_name;
-                    //var thumbPath = './server/uploads/fotografias/thumbs/';
-
                     thumb1({
                         source: path.resolve(newPath),
                         destination: path.resolve(thumbPath),
@@ -76,8 +87,6 @@ function uploadFotografia(req, res){
                     }).catch(err=>{
                         res.status(500).send({message:'Ocurrió un error al crear el thumbnail'});            
                     })
-                    
-
                 })
                 .catch(err => {
                     fs.unlink(file_path, err => {
@@ -110,8 +119,63 @@ function uploadFotografia(req, res){
     }
 }
 
+function getFotografia(req, res){
+    var foto1 = req.params.fotografia;
+    var thumb1 = req.params.thumb;
+    if (thumb1=='true')
+        var path_foto = ('./server/uploads/fotografias/' + foto1);
+    else
+        var path_foto = ('./server/uploads/fotografias/thumbs/' + foto1);
+
+    
+    fs.exists(path_foto, (exists)=> {
+        if (exists)
+        {
+            res.sendFile(path.resolve(path_foto));
+
+        }else{
+            res.status(404).send({message:'Fotografía no encontrada..!'});
+        }
+    })
+
+}
+
+function getAll(req, res){
+    fotografias.findAll({
+        where:{
+            activo:true
+        },
+        order: [
+            ['numero', 'ASC']
+        ]
+    })
+    .then(fotos => {
+        res.status(200).send({fotos});
+    })
+    .catch(err => {
+        res.status(500).send({message:'Ocurrió un error al buscar las fotografías..!'});
+    })
+}
+
+function getAllAdmin(req, res){
+    fotografias.findAll({
+        order: [
+            ['numero', 'ASC']
+        ]
+    })
+    .then(fotos => {
+        res.status(200).send({fotos});
+    })
+    .catch(err => {
+        res.status(500).send({message:'Ocurrió un error al buscar las fotografías..!'});
+    })
+}
+
 module.exports = {
     createFotografia,
     updateFotografia,
-    uploadFotografia
+    uploadFotografia,
+    getFotografia,
+    getAll,
+    getAllAdmin
 }
