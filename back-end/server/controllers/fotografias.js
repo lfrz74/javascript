@@ -170,6 +170,18 @@ function getAllAdmin(req, res){
         res.status(500).send({message:'Ocurrió un error al buscar las fotografías..!'});
     })
 }
+function getFotografiabyId(req, res){
+    var id = req.params.id;
+    var body = req.body;
+
+    fotografias.findByPk(id)
+    .then(foto=>{
+        res.status(200).send({foto});
+    })
+    .catch(err=>{
+        res.status(500).send({message:'No se encontró la fotografía'})
+    });
+}
 
 module.exports = {
     createFotografia,
@@ -177,5 +189,6 @@ module.exports = {
     uploadFotografia,
     getFotografia,
     getAll,
-    getAllAdmin
+    getAllAdmin,
+    getFotografiabyId
 }
