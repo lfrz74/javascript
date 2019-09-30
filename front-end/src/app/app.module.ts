@@ -20,12 +20,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRouting } from './routes/routing';
 import { LoginComponent } from './components/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent,
+    ListComponent
     
   ],
   imports: [

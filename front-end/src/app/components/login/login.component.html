@@ -3,9 +3,9 @@
         <h2>LOGIN</h2>
         <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
             <mat-form-field class="col-xs-12">
-                <input matInput type="text" #usuario="ngModel" name="usuario" [(ngModel)]="usuario.usuario"
+                <input matInput type="text" #nombre_usuario="ngModel" name="usuario" [(ngModel)]="usuario.usuario"
                     required placeholder="Usuario" autofocus />
-                <mat-error *ngIf="usuario.invalid">El usuario es requerido</mat-error>
+                <mat-error *ngIf="nombre_usuario.invalid">El usuario es requerido</mat-error>
             </mat-form-field>
             <mat-form-field class="col-xs-12">
                 <input matInput type="text" #password="ngModel" name="password" [(ngModel)]="usuario.password"
