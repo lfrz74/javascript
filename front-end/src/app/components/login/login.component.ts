@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   login(){
     this._serviceLogin.login(this.usuario)
     .then(res =>{
+      localStorage.setItem('identity_user', JSON.stringify(res));
       this._router.navigate(['/admin/list']);
     })
     .catch(err=>{
