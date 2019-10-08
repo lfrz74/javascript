@@ -8,7 +8,7 @@ export class AuthService {
   constructor() { }
 
   getIdentity(){
-    let identity = JSON.parse(localStorage.getItem('identity_user'));
+    let identity = JSON.parse(sessionStorage.getItem('identity_user'));
     if (identity){
       return identity;
     }else{
@@ -16,8 +16,17 @@ export class AuthService {
     }
   }
 
+  getToken(){
+    let token = JSON.parse(sessionStorage.getItem('token'));
+    if (token){
+      return token;
+    }else{
+      return null;
+    }
+  }
+
   logOut(){
-    localStorage.removeItem('identity_user');
-    localStorage.clear();
+    sessionStorage.removeItem('identity_user');
+    sessionStorage.clear();
   }
 }

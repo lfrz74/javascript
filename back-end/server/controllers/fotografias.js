@@ -122,9 +122,9 @@ function uploadFotografia(req, res){
 function getFotografia(req, res){
     var foto1 = req.params.fotografia;
     var thumb1 = req.params.thumb;
-    if (thumb1=='true')
+    if (thumb1=='false')
         var path_foto = ('./server/uploads/fotografias/' + foto1);
-    else
+    else if (thumb1=='true')
         var path_foto = ('./server/uploads/fotografias/thumbs/' + foto1);
 
     

@@ -10,7 +10,8 @@ export class LoginService {
 
   private _httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'Content-Type':  'application/json',
+      'Authorization': 'Hola chicos login'
     })
   };
 
@@ -18,10 +19,13 @@ export class LoginService {
     this._url = GLOBAL.url;
   }
 
-  login(usuario:any, getToken?:boolean){
-    let head = new HttpHeaders({
-      'Content-Type':'Application/json'
-    });
+  login(usuario:any, getToken?:string){
+
+    if (getToken){
+      usuario.token = getToken;
+      //console.log(usuario.token);
+    }
+    //console.log(this._httpOptions.headers.get('Content-Type'));    
     return this._http1.post(this._url + 'login', usuario, this._httpOptions ).toPromise()
     .then(res => res);
   }

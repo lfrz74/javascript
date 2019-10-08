@@ -20,11 +20,20 @@ export class LoginComponent implements OnInit {
   login(){
     this._serviceLogin.login(this.usuario)
     .then(res =>{
-      localStorage.setItem('identity_user', JSON.stringify(res));
-      this._router.navigate(['/admin/list']);
+      sessionStorage.setItem('identity_user', JSON.stringify(res));
+      //console.log(sessionStorage.getItem('identity_user'));
+    this._serviceLogin.login(this.usuario, "true")
+      .then(res =>{
+        sessionStorage.setItem('token', JSON.stringify(res));
+        //console.log(sessionStorage.getItem('token'));
+        this._router.navigate(['/admin/list']);
+      })
+      .catch(err=>{
+        console.log(err);
+      });
     })
     .catch(err=>{
       console.log(err);
-    })
-  }
+    });
+   }
 }
