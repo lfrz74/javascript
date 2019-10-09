@@ -23,9 +23,7 @@ export class LoginService {
 
     if (getToken){
       usuario.token = getToken;
-      //console.log(usuario.token);
     }
-    //console.log(this._httpOptions.headers.get('Content-Type'));    
     return this._http1.post(this._url + 'login', usuario, this._httpOptions ).toPromise()
     .then(res => res);
   }

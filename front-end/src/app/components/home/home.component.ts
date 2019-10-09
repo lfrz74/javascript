@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
     this._serviceFoto.getFotografias()
     .then(res =>{
       this.fotos1 = res as any[];
-      console.log(this.fotos1);
     })
     .catch(err =>{
       console.log(err);

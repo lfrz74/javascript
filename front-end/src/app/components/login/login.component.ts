@@ -21,11 +21,9 @@ export class LoginComponent implements OnInit {
     this._serviceLogin.login(this.usuario)
     .then(res =>{
       sessionStorage.setItem('identity_user', JSON.stringify(res));
-      //console.log(sessionStorage.getItem('identity_user'));
     this._serviceLogin.login(this.usuario, "true")
       .then(res =>{
         sessionStorage.setItem('token', JSON.stringify(res));
-        //console.log(sessionStorage.getItem('token'));
         this._router.navigate(['/admin/list']);
       })
       .catch(err=>{
