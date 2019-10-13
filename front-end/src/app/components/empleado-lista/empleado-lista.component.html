@@ -1,0 +1,9 @@
+<table class="table table-sm table-hover" style="border-style: outset">
+    <tr *ngFor="let fot of _fotografias1; let odd=odd; let even=even " 
+        [ngClass]="{ odd: odd, even:even}" (click)='message(fot.numero)'>
+        <td>{{fot.numero}}</td>
+        <td>{{fot.fotografia}}</td>
+        <td>{{fot.descripcion}}</td> - 
+    </tr>
+</table>
+  

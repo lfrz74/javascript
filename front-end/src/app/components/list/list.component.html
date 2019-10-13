@@ -1,3 +1,11 @@
+<div class="options">
+    <div class="add-fotografia" [routerLink]="['/admin/new']">
+        <mat-icon>add</mat-icon>
+    </div>
+    <div class="add-fotografia" [routerLink]="['/admin/empleado-lista']">
+        <mat-icon>accessibility</mat-icon>
+    </div>
+</div>
 <div class="content">
     <div class="grilla col-lg-2 col-md-3 col-sm-4" *ngFor="let fot of _fotografias1">
         <div class="content-fotografia" [ngClass] = "fot.activo == false?'content-fotografia-disabled':''">
@@ -8,7 +16,7 @@
                 {{fot.numero}} - {{fot.fotografia}}
             </div>
             <div class="fotografia-hover">
-                <div>
+                <div [routerLink]="['/admin/editar', fot.id]">
                     <mat-icon>create</mat-icon>
                 </div>
             </div>

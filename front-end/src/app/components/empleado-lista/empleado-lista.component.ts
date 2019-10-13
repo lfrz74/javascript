@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FotografiasService } from 'src/app/services/fotografias.service';
 import { GLOBAL } from 'src/app/services/global';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: 'app-empleado-lista',
+  templateUrl: './empleado-lista.component.html',
+  styleUrls: ['./empleado-lista.component.css']
 })
-export class ListComponent implements OnInit {
+export class EmpleadoListaComponent implements OnInit {
   public _fotografias: any[];
   public _fotografias1: any[];
   public _url: string;
 
-  constructor(private _serviceFotografia: FotografiasService) { 
+  constructor(private _serviceFotografia: FotografiasService, private _toastr: ToastrService ) { 
     this._url = GLOBAL.url;
   }
 
@@ -30,5 +32,8 @@ export class ListComponent implements OnInit {
     .catch(err => {
       console.log(err);
     });
+  }
+  message(numero: Number){
+    this._toastr.success(numero.toString(), numero.toString());
   }
 }

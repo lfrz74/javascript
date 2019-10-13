@@ -11,6 +11,6 @@ module.exports = (app) => {
     app.get('/api/fotografias', fotografiasController.getAll);
     app.get('/api/fotografias-admin', md_auth.auth, fotografiasController.getAllAdmin);
     //Sin jwt les consumí desde ASP.NET MVC Core para la prueba
-    app.get('/api/fotografia1/:id', fotografiasController.getFotografiabyId);
+    app.get('/api/fotografia1/:id', md_auth.auth, fotografiasController.getFotografiabyId);
     app.post('/api/fotografia2', fotografiasController.createFotografia);
 }

@@ -8,7 +8,7 @@
                 <mat-error *ngIf="nombre_usuario.invalid">El usuario es requerido</mat-error>
             </mat-form-field>
             <mat-form-field class="col-xs-12">
-                <input matInput type="text" #password="ngModel" name="password" [(ngModel)]="usuario.password"
+                <input matInput type="password" #password="ngModel" name="password" [(ngModel)]="usuario.password"
                     required placeholder="Password" />
                 <mat-error *ngIf="password.invalid">El password es requerido</mat-error>
             </mat-form-field>
