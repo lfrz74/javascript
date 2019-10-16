@@ -9,7 +9,7 @@ import { EmpleadoListaComponent } from '../components/empleado-lista/empleado-li
 import { EditarFotografiaComponent } from '../components/editar-fotografia/editar-fotografia.component';
 
 const app_routes : Routes = [
-    { path: 'home',  component:HomeComponent },
+    { path: 'home/:id',  component:HomeComponent },
     { path: 'admin', component:AdminComponent, canActivate:[GuardService],
         children:[
             {path: 'list', component:ListComponent},

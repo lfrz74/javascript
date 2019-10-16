@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FotografiasService } from 'src/app/services/fotografias.service';
+import { GLOBAL } from 'src/app/services/global';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +9,15 @@ import { FotografiasService } from 'src/app/services/fotografias.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public fotos1: any[];
-  constructor(private _serviceFoto: FotografiasService ) { }
+  public _fotos1: any[];
+  public _fotografias1: any[];
+  public _url: string;
+  public _fotografia_seleccionada: any={};
+
+  constructor(private _serviceFoto: FotografiasService,
+    private _activeRoute: ActivatedRoute ) { 
+    this._url = GLOBAL.url;
+  }
 
   ngOnInit() {
     this.getFotografia();
@@ -17,7 +26,23 @@ export class HomeComponent implements OnInit {
   getFotografia(){
     this._serviceFoto.getFotografias()
     .then(res =>{
-      this.fotos1 = res as any[];
+      this._fotografias1 = res as any[];
+      this._fotos1 = this._fotografias1['fotos'];
+      this._activeRoute.params.forEach((param:Params)=> {
+        let num = param['id'];
+        this._fotografia_seleccionada.fotografia = this._fotos1.find(f => {
+          return f.numero == num;
+        })
+        if (!this._fotografia_seleccionada.fotografia){
+          this._fotografia_seleccionada.fotografia = this._fotos1[0];
+        }
+        let next_img = this._fotos1.indexOf(this._fotografia_seleccionada.fotografia) + 1;
+        let prev_img = this._fotos1.indexOf(this._fotografia_seleccionada.fotografia) - 1;
+        this._fotografia_seleccionada.siguiente = next_img < this._fotos1.length ? this._fotos1[next_img].numero : null;
+        this._fotografia_seleccionada.anterior =  prev_img >=0 ? this._fotos1[prev_img].numero : null;
+
+        console.log(this._fotografia_seleccionada.fotografia);
+      })
     })
     .catch(err =>{
       console.log(err);
