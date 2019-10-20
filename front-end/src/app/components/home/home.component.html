@@ -1,12 +1,14 @@
 <div class="content-home">
     <div class="fotografia" *ngFor="let _fot of _fotos1">
-        <div class="fotografia-item" *ngIf="_fotografia_seleccionada.fotografia.numero==_fot.numero"
+        <div class="fotografia-item" 
+            [@mover-fotografias]="_direccion"
+            *ngIf="_fotografia_seleccionada.fotografia.numero==_fot.numero"
             [style.background-image]="'url(' + _url + 'get-fotografia/' + _fot.imagen + '/false)'">
-            <div class="data-fotografia">
+            <div class="data-fotografia"  *ngIf="!_ver_mas">
                     {{_fot.fotografia}}:{{_fot.descripcion}}
             </div>
             <div class="leer-mas">
-                <div class="btn-leer-mas">
+                <div class="btn-leer-mas" (click)="_ver_mas=!_ver_mas">
                     <mat-icon>add</mat-icon>
                 </div>
                 <div class="txt-leer-mas">Leer más</div>
@@ -22,5 +24,20 @@
     </div>
     <div class="move-right" *ngIf="_fotografia_seleccionada.siguiente" [routerLink]="['/home/', _fotografia_seleccionada.siguiente]">
         <mat-icon>keyboard_arrow_right</mat-icon>
+    </div>
+</div>
+<div class="ver-mas" [@ver-mas] *ngIf="_ver_mas" (click)="_ver_mas=!_ver_mas">
+    <div class="ver-mas-detalle col-lg-6 col-md-6 col-xs-10">
+        <div class="ver-mas-nombre detalle">{{_fotografia_seleccionada.fotografia.fotografia}}</div>
+        <div class="ver-mas-descripcion detalle">{{_fotografia_seleccionada.fotografia.descripcion}}</div>
+        <div class="ver-mas-autor detalle">{{_fotografia_seleccionada.fotografia.autor}}</div>
+        <div class="compartir detalle">
+           <div class="twitter">
+               <img src="../../../assets/imagenes/Twitter.png" alt="">
+           </div> 
+           <div class="facebook">
+                <img src="../../../assets/imagenes/facebook.png" alt="">
+            </div> 
+        </div>
     </div>
 </div>
