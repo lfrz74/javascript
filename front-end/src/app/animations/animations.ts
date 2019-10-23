@@ -58,5 +58,33 @@ export const Animations = [
             query('.twitter', animate('200ms cubic-bezier(0.175, 0.885, 0.32, 1.275)', style('*'))),
             query('.facebook', animate('200ms cubic-bezier(0.175, 0.885, 0.32, 1.275)', style('*')))
         ])
+    ]),
+    trigger('show-thumbs1', [
+        transition('void => *', [
+            style({background: 'rgba(51,51,51,0)'}),
+            query('.item-fotografia', style({transform: 'translateY(100%)'})),
+            query('.detalle-fotografia', style({left: '-50px'})),
+            query('.numero-fotografia', style({opacity:0, transform:'scale(0)'})),
+            query('.item-fotografia-seleccionada', style({transform: 'translateY(-100%)'})),
+            animate('300ms', style('*')),
+            group([
+                query('.item-fotografia', stagger(40, [
+                    animate('800ms 100ms cubic-bezier(0.1075, 0.885, 0.32, 1.275)',  style('*'))
+                ])),
+                query('.detalle-fotografia', stagger(40, [
+                    animate('400ms 600ms cubic-bezier(0.1075, 0.885, 0.32, 1.275)',  style('*'))
+                ])),
+                query('.numero-fotografia', animate('300ms', style('*'))),
+                query('.item-fotografia-seleccionada', animate('800ms 100ms cubic-bezier(0.1075, 0.885, 0.32, 1.275)', style('*'))),
+            ]),
+        ]),
+        transition('* => void', [
+            group([
+                animate('200ms 300ms', style({opacity:0})),
+                query('.item-fotografia', stagger(40, [
+                    animate('400ms cubic-bezier(0.1075, 0.885, 0.32, 1.275)', style({transform: 'translateY(100%)'}))
+                ]))
+            ])
+        ])
     ])
 ]

@@ -1,0 +1,11 @@
+<div [ngClass]="_seleccionada==_foto ? 'item-fotografia-seleccionada' : 'item-fotografia'" 
+    [routerLink] = "['/home', _foto.numero]"
+    [style.background-image]="'url(' + _url + 'get-fotografia/' + _foto.imagen + '/true)'">
+    <div class="detalle-fotografia">
+        <div class="linea"></div>
+        <div class="numero">{{_foto.numero}}</div>
+        <div class="autor">{{_foto.autor}}</div>
+    </div>
+    <div  *ngIf="_seleccionada!=_foto" class="item-fotografia-hover"></div>
+</div>
+

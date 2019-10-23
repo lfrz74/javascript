@@ -24,6 +24,7 @@ import { ListComponent } from './components/list/list.component';
 import { NuevaFotografiaComponent } from './components/nueva-fotografia/nueva-fotografia.component';
 import { EmpleadoListaComponent } from './components/empleado-lista/empleado-lista.component';
 import { EditarFotografiaComponent } from './components/editar-fotografia/editar-fotografia.component';
+import { FotografiaComponent } from './components/fotografia/fotografia.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EditarFotografiaComponent } from './components/editar-fotografia/editar
     ListComponent,
     NuevaFotografiaComponent,
     EmpleadoListaComponent,
-    EditarFotografiaComponent
+    EditarFotografiaComponent,
+    FotografiaComponent
     
   ],
   imports: [

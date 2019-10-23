@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public _ver_mas: boolean=false;
   public _foto_actual: number = 0;
   public _direccion: string;
+  public _show_thumbs: boolean=false;
 
   constructor(private _serviceFoto: FotografiasService,
     private _activeRoute: ActivatedRoute ) { 
@@ -54,6 +55,7 @@ export class HomeComponent implements OnInit {
     })
   }
   moverFotografia(fotog: any){
+    this._show_thumbs = false;
     if (fotog.numero > this._foto_actual){
       this._direccion = "right";
     }else if(fotog.numero < this._foto_actual){
