@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FotografiasService } from 'src/app/services/fotografias.service';
 import { GLOBAL } from 'src/app/services/global';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Animations } from 'src/app/animations/animations';
 
 @Component({
@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
   public _show_thumbs: boolean=false;
 
   constructor(private _serviceFoto: FotografiasService,
-    private _activeRoute: ActivatedRoute ) { 
+    private _activeRoute: ActivatedRoute,
+    private _router: Router ) { 
     this._url = GLOBAL.url;
   }
 
@@ -63,5 +64,6 @@ export class HomeComponent implements OnInit {
     }
 
     this._foto_actual =  fotog.numero;
+    this._router.navigate(['/home', this._foto_actual]);
   }
 }

@@ -31,3 +31,12 @@
     overflow: hidden;
     background: #444444
 }
+.home{
+    margin: auto auto auto 20px;
+    cursor: pointer;
+    opacity: .6;
+    transition: all .2s linear;
+}
+.home:hover{
+    opacity: 1;
+}

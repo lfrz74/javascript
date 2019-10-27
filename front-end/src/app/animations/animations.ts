@@ -86,5 +86,23 @@ export const Animations = [
                 ]))
             ])
         ])
+    ]),
+    trigger('anim-listado1',[
+        transition('*=>*', [
+            query('.grilla1', style({transform:'translateY(30px)', opacity:0}), {optional: true}),
+            query('.grilla1', stagger(30,[
+                animate('300ms cubic-bezier(0.1075, 0.885, 0.32, 1.275)', style('*'))
+            ]), {optional:true})
+        ])        
+    ]),
+    trigger('anim-admin', [
+        transition(':enter', [
+            query('.options', style({height: '0px'})),
+            query('.options', animate('1000ms cubic-bezier(0.1075, 0.885, 0.32, 1.275)', style('*')))
+        ]),
+        transition(':leave',[
+            query('.content', animate('1000ms cubic-bezier(0.6, -0.28, 0.735, 0.045)', style({opacity:0, transform:'translateY(40px)'}))),
+            query('.options', animate('1000ms cubic-bezier(0.6, -0.28, 0.735, 0.045)', style({height: '0px'})))
+        ])
     ])
 ]

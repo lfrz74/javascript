@@ -7,7 +7,7 @@
     bottom: 0px;
     overflow-y: scroll;
 }
-.grilla{
+.grilla1{
     padding: 4px;
 }
 .content-fotografia{
@@ -84,6 +84,7 @@
     display: flex;
     flex-direction: row;
     background: #333;
+    overflow: hidden;
 }
 .add-fotografia{
     background: rgba(138, 175, 35, 0.5);

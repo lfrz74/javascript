@@ -20,7 +20,7 @@ const app_routes : Routes = [
     },
     { path: 'login', component:LoginComponent},
     //Todas la rutas q escribamos deben coincidir en su totalidad, sino se redirecciona a ''
-    { path: '**', pathMatch: 'full', redirectTo:''} 
+    { path: '**', pathMatch: 'full', redirectTo:'home/1'} 
 ]
 
 export const AppRouting =  RouterModule.forRoot(app_routes);

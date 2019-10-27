@@ -6,8 +6,8 @@
         <mat-icon>accessibility</mat-icon>
     </div>
 </div>
-<div class="content">
-    <div class="grilla col-lg-2 col-md-3 col-sm-4" *ngFor="let fot of _fotografias1">
+<div class="content" [@anim-listado1] = "_fotografias1">
+    <div class="grilla1 col-lg-2 col-md-3 col-sm-4" *ngFor="let fot of _fotografias1">
         <div class="content-fotografia" [ngClass] = "fot.activo == false?'content-fotografia-disabled':''">
             <div class="fotografia" [style.background-image]="'url(' + _url + 'get-fotografia/' + fot.imagen + '/true)'">
 

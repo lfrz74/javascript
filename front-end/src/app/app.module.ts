@@ -10,7 +10,7 @@ import {
   MatButtonModule, 
   MatIconModule,
   MatCheckboxModule } from '@angular/material';
- import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from  'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
